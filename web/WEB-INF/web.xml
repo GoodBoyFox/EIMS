@@ -40,4 +40,13 @@
         <url-pattern>/checkLogin</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>getEmployeeListServlet</servlet-name>
+        <servlet-class>EIMS.getEmployeeListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getEmployeeListServlet</servlet-name>
+        <url-pattern>/admin/getEmployeeList</url-pattern>
+    </servlet-mapping>
+
 </web-app>

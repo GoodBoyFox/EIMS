@@ -49,4 +49,13 @@
         <url-pattern>/admin/getEmployeeList</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>exitLoginServlet</servlet-name>
+        <servlet-class>EIMS.exitLoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>exitLoginServlet</servlet-name>
+        <url-pattern>/exitLogin</url-pattern>
+    </servlet-mapping>
+
 </web-app>

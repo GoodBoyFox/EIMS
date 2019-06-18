@@ -45,12 +45,13 @@
         <div class="text-center my-5 w-100">
             <h4 class="text-white-50">雇员信息管理系统</h4>
             <h1 class="text-white">EIMS</h1>
+            <p class="text-center text-white-50" style="font-size: small;">当前管理员:${cookie.name.value}<br><a href="/exitLogin" class="badge badge-pill badge-light">退出</a></p>
         </div>
         <div class="pr-2">
             <jsp:include page="/WEB-INF/components/aside.jsp"></jsp:include>
         </div>
         <hr class="my-3">
-        <div class="text-center my-5 w-100">
+        <div class="text-center my-3 w-100">
             <p class="text-muted" style="font-size: small;">Beta 0.26<br>©mooyyu</p>
         </div>
     </div>

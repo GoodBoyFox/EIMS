@@ -59,4 +59,21 @@ public class CookieDao extends HttpServlet {
         cookie.setPath("/");
         response.addCookie(cookie);
     }
+
+    /**
+     * 清空当前request的所有cookie
+     * @param request
+     * @param response
+     */
+    public void clearCookie(HttpServletRequest request, HttpServletResponse response) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                cookie.setValue("");
+                cookie.setMaxAge(0);
+                cookie.setPath("/");
+                response.addCookie(cookie);
+            }
+        }
+    }
 }

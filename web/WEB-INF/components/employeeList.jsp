@@ -12,6 +12,9 @@
     var itemlistsize = ${employeeList.size()};
 </script>
 
+<script src="/staticResource/js/FileSaver.min.js"></script>
+<script src="/staticResource/js/tableExport.min.js"></script>
+
 <jsp:include page="/WEB-INF/components/filterForm.jsp"></jsp:include>
 
 <div id="main" class="${hiddenList ? "d-none" : ""}">
@@ -19,14 +22,14 @@
         <div class="container">
             <a class="navbar-brand">雇员列表 查询到${employeeList.size()}条记录</a>
             <span>
-                <button type="button" class="btn btn-outline-info">导出Excel</button>
+                <button type="button" class="btn btn-outline-info" onclick="$('table#employeeList').tableExport({fileName: '雇员列表', ignoreColumn:[8, 9], type:'csv'});">导出表格</button>
                 <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">删除该查询下的所有记录</button>
             </span>
         </div>
     </nav>
 
     <div class="table-responsive border border-dark">
-        <table class="table table-sm table-striped table-dark text-nowrap">
+        <table id="employeeList" class="table table-sm table-striped table-dark text-nowrap">
             <thead>
             <tr>
                 <th scope="col" style="width: 48px;">#</th>

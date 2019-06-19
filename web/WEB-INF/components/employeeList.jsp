@@ -7,7 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="Dao.employeeDao" %>
 
 <script>
     var itemlistsize = ${employeeList.size()};
@@ -15,10 +14,11 @@
 
 <jsp:include page="/WEB-INF/components/filterForm.jsp"></jsp:include>
 
-<div id="main">
+<div id="main" class="${hiddenList ? "d-none" : ""}">
     <nav class="navbar navbar-expand-lg navbar-light bg-light border border-dark">
         <div class="container">
-            <a class="navbar-brand">雇员列表</a>
+            <a class="navbar-brand">雇员列表 查询到${employeeList.size()}条记录</a>
+            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">删除该查询下的所有记录</button>
         </div>
     </nav>
 
@@ -58,6 +58,27 @@
     </div>
     <hr>
     <jsp:include page="/WEB-INF/components/pagination.jsp"></jsp:include>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">操作警告</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                是否确认删除该查询下所有记录？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="/staticResource/func/pagination.js"></script>

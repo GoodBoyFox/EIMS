@@ -14,6 +14,18 @@ public class employee {
     private int deptno;
     private String mgrName;
     private String deptName;
+    private String hiredateStr;
+
+    public employee() {}
+    public employee(String name, String job, String hiredateStr, int sal, double comm, int mgr, int deptno) {
+        this.name = name;
+        this.job = job;
+        this.hiredateStr = hiredateStr;
+        this.sal = sal;
+        this.comm = comm;
+        this.mgr = mgr;
+        this.deptno = deptno;
+    }
 
     @Override
     public String toString() {
@@ -29,6 +41,7 @@ public class employee {
                 ", deptno=" + deptno +
                 ", mgrName='" + mgrName + '\'' +
                 ", deptName='" + deptName + '\'' +
+                ", hiredateStr='" + hiredateStr + '\'' +
                 '}';
     }
 
@@ -118,5 +131,13 @@ public class employee {
 
     public void setDeptName(String deptName) {
         this.deptName = deptName;
+    }
+
+    public String getHiredateStr() {
+        return hiredateStr;
+    }
+
+    public void setHiredateStr(String hiredateStr) {
+        this.hiredateStr = hiredateStr;
     }
 }

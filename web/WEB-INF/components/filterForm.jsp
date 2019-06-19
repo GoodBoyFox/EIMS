@@ -110,13 +110,18 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="tipModalLabel">格式错误</h5>
+                    <h5 class="modal-title" id="tipModalLabel">日期错误</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{modalInfo}}
+                    请确保日期满足以下条件!
+                    <ul>
+                        <li>日期合法</li>
+                        <li>日期格式为xxxx-xx-xx</li>
+                        <li>日期在2000-01-01至2020-12-31之间</li>
+                    </ul>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
@@ -136,13 +141,21 @@
             comm: "${curQuery.comm < 0 ? "" : curQuery.comm}",
             hiredateStr: "${curQuery.hiredateStr}",
             mgr: "${curQuery.mgr}",
-            dept: "${curQuery.deptno}",
-            modalInfo: ""
+            dept: "${curQuery.deptno}"
         },
         methods: {
             checkHiredate: function() {
-
-                return true;
+                if (this.hiredateStr.length == 0) {
+                    return true;
+                } else if (this.hiredateStr.length == 10 &&
+                    this.hiredateStr.split('-').length == 3 &&
+                    new Date(this.hiredateStr).toString() != "Invalid Date" &&
+                    new Date(this.hiredateStr) >= new Date("2000-01-01") &&
+                    new Date(this.hiredateStr) <= new Date("2020-12-31")) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
         }
     });

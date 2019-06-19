@@ -15,10 +15,13 @@
 <jsp:include page="/WEB-INF/components/filterForm.jsp"></jsp:include>
 
 <div id="main" class="${hiddenList ? "d-none" : ""}">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light border border-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border border-dark border-bottom-0">
         <div class="container">
             <a class="navbar-brand">雇员列表 查询到${employeeList.size()}条记录</a>
-            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">删除该查询下的所有记录</button>
+            <span>
+                <button type="button" class="btn btn-outline-info">导出Excel</button>
+                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">删除该查询下的所有记录</button>
+            </span>
         </div>
     </nav>
 

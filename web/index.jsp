@@ -81,6 +81,13 @@
     </div>
 </div>
 
+<hr class="my-5">
+
+<blockquote class="blockquote text-center">
+    <p class="mb-0 text-muted">公开管理员账户为<span class="badge badge-light">admin/pwd</span><br>本站为演示所用,请勿大规模删除数据</p>
+    <small class="text-muted">一切解释权归 <cite title="Source Title">mooyyu</cite> 所有</small>
+</blockquote>
+
 <script src="/staticResource/func/md5.js"></script>
 <script>
     var loginApp = new Vue({

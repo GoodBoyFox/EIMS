@@ -23,4 +23,16 @@ public class employeeDao {
         }
         return new ArrayList<employee>();
     }
+
+    public List<employee> queryEmployee(String gcs) {
+        String sql = String.format("select @rownum:=@rownum+1 as rownum, employee.id as id, employee.name as name, " +
+                "job, hiredate, sal, comm, mgr, deptno, manager.name as mgrName, department.name as deptName from employee " +
+                "join manager on mgr=manager.id join department on deptno=department.id, (select @rownum:=0) t %s;", gcs);
+        try {
+            return qr.query(sql, new BeanListHandler<employee>(employee.class));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<employee>();
+    }
 }

@@ -10,6 +10,7 @@
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/components/departmentInfo.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/components" />
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/components/departmentList.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/components" />
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/components/employeeList.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/components" />
+        <entry key="file://$PROJECT_DIR$/web/WEB-INF/components/filterForm.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/components" />
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/components/modifyEmployee.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/components" />
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/components/pagination.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/components" />
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/hello.html" value="file://$PROJECT_DIR$/web/WEB-INF" />

@@ -13,6 +13,8 @@
     var itemlistsize = ${employeeList.size()};
 </script>
 
+<jsp:include page="/WEB-INF/components/filterForm.jsp"></jsp:include>
+
 <div id="main">
     <nav class="navbar navbar-expand-lg navbar-light bg-light border border-dark">
         <div class="container">

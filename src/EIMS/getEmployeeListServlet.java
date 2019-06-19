@@ -14,4 +14,9 @@ public class getEmployeeListServlet extends HttpServlet {
         request.setAttribute("employeeList", new employeeDao().getEmployeeList());
         request.getRequestDispatcher("/WEB-INF/components/employeeList.jsp").include(request, response);
     }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+    }
 }

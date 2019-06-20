@@ -81,6 +81,7 @@
                         <label class="input-group-text" for="MgrSelect">MGR</label>
                     </div>
                     <select name="mgr" class="custom-select" id="MgrSelect" v-model="mgr">
+                        <option value="-1">--</option>
                         <c:forEach var="item" items="${MgrNameList}">
                             <option value="${item.id}">${item.name}</option>
                         </c:forEach>
@@ -93,6 +94,7 @@
                         <label class="input-group-text" for="DeptSelect">Dept</label>
                     </div>
                     <select name="dept" class="custom-select" id="DeptSelect" v-model="dept">
+                        <option value="-1">--</option>
                         <c:forEach var="item" items="${DeptNameList}">
                             <option value="${item.id}">${item.name}</option>
                         </c:forEach>

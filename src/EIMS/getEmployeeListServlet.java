@@ -23,7 +23,7 @@ public class getEmployeeListServlet extends HttpServlet {
         getOptionsForform(request);
         request.setAttribute("hiddenList", true);
         request.setAttribute("employeeList", new ArrayList<employeeDao>());
-        request.setAttribute("curQuery", new employee("", "", "", -1, -1, 0, 0));
+        request.setAttribute("curQuery", new employee("", "", "", -1, -1, -1, -1));
         request.getRequestDispatcher("/WEB-INF/components/employeeList.jsp").include(request, response);
     }
 
@@ -45,8 +45,8 @@ public class getEmployeeListServlet extends HttpServlet {
                 cq.name,
                 cq.job,
                 cq.hiredateStr,
-                cq.sal == "" ? -1 : Integer.valueOf(cq.sal),
-                cq.comm == "" ? -1 : Double.valueOf(cq.comm),
+                cq.sal.equals("") ? -1 : Integer.valueOf(cq.sal),
+                cq.comm.equals("") ? -1 : Double.valueOf(cq.comm),
                 Integer.valueOf(cq.mgr),
                 Integer.valueOf(cq.dept)
         ));

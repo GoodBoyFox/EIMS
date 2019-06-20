@@ -1,7 +1,5 @@
 package Filter;
 
-import com.sun.deploy.net.HttpResponse;
-
 import javax.servlet.*;
 import java.io.IOException;
 

@@ -4,6 +4,41 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    <jsp-config>
+        <taglib>
+            <taglib-uri>http://java.sun.com/jsp/jstl/fmt</taglib-uri>
+            <taglib-location>/WEB-INF/tld/fmt.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>http://java.sun.com/jsp/jstl/fmt-rt</taglib-uri>
+            <taglib-location>/WEB-INF/tld/fmt-1_0-rt.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>http://java.sun.com/jsp/jstl/core</taglib-uri>
+            <taglib-location>/WEB-INF/tld/c.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>http://java.sun.com/jsp/jstl/core-rt</taglib-uri>
+            <taglib-location>/WEB-INF/tld/c-1_0-rt.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>http://java.sun.com/jsp/jstl/sql</taglib-uri>
+            <taglib-location>/WEB-INF/tld/sql.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>http://java.sun.com/jsp/jstl/sql-rt</taglib-uri>
+            <taglib-location>/WEB-INF/tld/sql-1_0-rt.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>http://java.sun.com/jsp/jstl/x</taglib-uri>
+            <taglib-location>/WEB-INF/tld/x.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>http://java.sun.com/jsp/jstl/x-rt</taglib-uri>
+            <taglib-location>/WEB-INF/tld/x-1_0-rt.tld</taglib-location>
+        </taglib>
+    </jsp-config>
+
     <filter>
         <filter-name>setEncodeFilter</filter-name>
         <filter-class>Filter.setEncodeFilter</filter-class>
@@ -56,6 +91,15 @@
     <servlet-mapping>
         <servlet-name>exitLoginServlet</servlet-name>
         <url-pattern>/exitLogin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>doDeleteServlet</servlet-name>
+        <servlet-class>EIMS.doDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>doDeleteServlet</servlet-name>
+        <url-pattern>/admin/doDelete</url-pattern>
     </servlet-mapping>
 
 </web-app>

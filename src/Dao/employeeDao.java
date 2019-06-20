@@ -35,4 +35,22 @@ public class employeeDao {
         }
         return new ArrayList<employee>();
     }
+
+    public void deleteEmployee(int id) {
+        String sql = "delete from employee where id=?;";
+        try {
+            qr.update(sql, id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteAllQuery(String gcs) {
+        String sql = String.format("delete from employee %s;", gcs);
+        try {
+            qr.update(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

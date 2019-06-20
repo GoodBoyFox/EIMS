@@ -23,7 +23,7 @@
             <a class="navbar-brand">雇员列表 查询到${employeeList.size()}条记录</a>
             <span>
                 <button type="button" class="btn btn-outline-info" onclick="$('table#employeeList').tableExport({fileName: '雇员列表', ignoreColumn:[8, 9], type:'csv'});">导出表格</button>
-                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">删除该查询下的所有记录</button>
+                <button type="button" class="btn btn-outline-danger" onclick="employeeListModalApp.show('deleteAll');">删除该查询下的所有记录</button>
             </span>
         </div>
     </nav>
@@ -56,7 +56,7 @@
                     <td><a class="btn btn-sm btn-outline-info" role="button" aria-disabled="true">${item.mgrName}</a></td>
                     <td><a class="btn btn-sm btn-outline-warning" role="button" aria-disabled="true">${item.deptName}</a></td>
                     <td><a class="btn btn-sm btn-outline-primary" role="button" aria-disabled="true">编辑</a></td>
-                    <td><a class="btn btn-sm btn-outline-danger" role="button" aria-disabled="true">×</a></td>
+                    <td><button class="btn btn-sm btn-outline-danger" onclick="employeeListModalApp.show('${item.id}');">×</button></td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -67,24 +67,69 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div class="modal fade" id="employeeListModal" tabindex="-1" role="dialog" aria-labelledby="employeeListModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">操作警告</h5>
+                <h5 class="modal-title" id="employeeListModalLabel">操作警告</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                是否确认删除该查询下所有记录？
+                {{showInfo}}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-danger" v-on:click="doDelete">Delete</button>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    var employeeListModalApp = new Vue({
+        el: "div#employeeListModal",
+        data: {
+            showInfo: "",
+            curBTN: ""
+        },
+        methods: {
+            show: function(curBTN) {
+                this.curBTN = curBTN;
+                if (curBTN == "deleteAll") {
+                    this.showInfo = "是否确认删除该查询下所有记录？";
+                } else {
+                    this.showInfo = "是否确认删除该此条记录？"
+                }
+                $('div#employeeListModal').modal('show');
+            },
+            doDelete: function() {
+                if (this.curBTN == "deleteAll") {
+                    axios.post('/admin/doDelete', {
+                        name: filterFormApp.name,
+                        job: filterFormApp.job,
+                        sal: filterFormApp.sal,
+                        comm: filterFormApp.comm,
+                        hiredate: filterFormApp.hiredateStr,
+                        mgr: filterFormApp.mgr,
+                        dept: filterFormApp.dept
+                    }).then(function() {
+                        window.location.reload();
+                    }).catch(function(error) {
+                        console.info(error);
+                    });
+                } else {
+                    axios.get('/admin/doDelete?id=' + this.curBTN)
+                        .then(function() {
+                            window.location.reload();
+                        }).catch(function(error) {
+                            console.info(error);
+                    });
+                }
+            }
+        }
+    })
+</script>
 
 <script src="/staticResource/func/pagination.js"></script>

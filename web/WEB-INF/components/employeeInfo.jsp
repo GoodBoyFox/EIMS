@@ -171,6 +171,7 @@
 </div>
 
 <script>
+    var curEmployeeId = ${curEmployee.id};
     var employeeInfoApp = new Vue({
         el: "div#employeeInfo",
         data: {
@@ -229,4 +230,4 @@
     }
 </script>
 
-<script src="/staticResource/func/uploadIMG.js?v=0.48"></script>
+<script src="/staticResource/func/uploadIMG.js?v=0.66"></script>

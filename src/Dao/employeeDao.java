@@ -70,10 +70,10 @@ public class employeeDao {
         return -1;
     }
 
-    public void updateAvatar(String avatar) {
-        String sql = "update employee set avatar=?;";
+    public void updateAvatar(String avatar, int id) {
+        String sql = "update employee set avatar=? where id=?;";
         try {
-            qr.update(sql, avatar);
+            qr.update(sql, avatar, id);
         } catch (SQLException e) {
             e.printStackTrace();
         }

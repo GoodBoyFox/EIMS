@@ -35,6 +35,7 @@ var checkIMG = function(o) {
 var submitIMG = function() {
     if (imgFile != null) {
         axios.post('/admin/uploadAvatar', {
+            id: curEmployeeId,
             avatar: new_src
         }).then(function(res) {
             window.location.reload();

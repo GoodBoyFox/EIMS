@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="6baf5dea-0829-4a70-be5d-accc282c199a" name="eims" url="http://eims.mooyyu.cn">
+        <fileTransfer host="eims.mooyyu.cn" port="1314" rootFolder="/www/wwwroot/eims" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="1314" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

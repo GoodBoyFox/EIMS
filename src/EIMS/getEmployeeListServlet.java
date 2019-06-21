@@ -6,6 +6,7 @@ import Dao.employeeDao;
 import OBJ.curQuery;
 import OBJ.employee;
 import utils.generateConditionalStmt;
+import utils.getOptions;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +21,7 @@ import java.util.Date;
 public class getEmployeeListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getOptionsForform(request);
+        new getOptions().getOptionsForform(request);
         request.setAttribute("hiddenList", true);
         request.setAttribute("employeeList", new ArrayList<employeeDao>());
         request.setAttribute("curQuery", new employee("", "", "", -1, -1, -1, -1));
@@ -29,7 +30,7 @@ public class getEmployeeListServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getOptionsForform(request);
+        new getOptions().getOptionsForform(request);
         request.setAttribute("hiddenList", false);
         curQuery cq = new curQuery(
                 request.getParameter("name"),
@@ -51,10 +52,5 @@ public class getEmployeeListServlet extends HttpServlet {
                 Integer.valueOf(cq.dept)
         ));
         request.getRequestDispatcher("/WEB-INF/components/employeeList.jsp").include(request, response);
-    }
-
-    private void getOptionsForform(HttpServletRequest request) {
-        request.setAttribute("MgrNameList", new MGRDao().getMGRNameList());
-        request.setAttribute("DeptNameList", new departmentDao().getDepartmentNameList());
     }
 }

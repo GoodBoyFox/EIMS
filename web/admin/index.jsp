@@ -60,11 +60,13 @@
             <c:when test="${aside.equals('employeeList')}">
                 <jsp:include page="/admin/getEmployeeList"></jsp:include>
             </c:when>
+            <c:when test="${aside.equals('employeeInfo')}">
+                <jsp:include page="/admin/getEmployeeInfo"></jsp:include>
+            </c:when>
             <c:when test="${aside.equals('default') ||
                             aside.equals('addEmployee') ||
                             aside.equals('departmentInfo') ||
-                            aside.equals('departmentList') ||
-                            aside.equals('employeeInfo')}">
+                            aside.equals('departmentList')}">
                 <jsp:include page="/WEB-INF/components/${aside}.jsp"></jsp:include>
             </c:when>
             <c:otherwise>

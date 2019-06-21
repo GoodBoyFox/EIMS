@@ -3,6 +3,7 @@ package Dao;
 import OBJ.employee;
 import cn.itcast.jdbc.TxQueryRunner;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import java.sql.SQLException;
@@ -34,6 +35,16 @@ public class employeeDao {
             e.printStackTrace();
         }
         return new ArrayList<employee>();
+    }
+
+    public employee getEmployee(int id) {
+        String sql = "select id, name, job, hiredate, sal, comm, mgr, deptno from employee where id=?;";
+        try {
+            return qr.query(sql, new BeanHandler<employee>(employee.class), id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new employee();
     }
 
     public void deleteEmployee(int id) {

@@ -67,4 +67,13 @@
         <url-pattern>/admin/doDelete</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>getEmployeeInfoServlet</servlet-name>
+        <servlet-class>EIMS.getEmployeeInfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getEmployeeInfoServlet</servlet-name>
+        <url-pattern>/admin/getEmployeeInfo</url-pattern>
+    </servlet-mapping>
+
 </web-app>

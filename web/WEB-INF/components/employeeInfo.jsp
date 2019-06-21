@@ -110,7 +110,7 @@
     </div>
     <div class="col-1"></div>
     <div class="col-3">
-        <img id="avatarIMG" class="rounded w-100 mb-1" src="${avatar == '' ? '/staticResource/img/index.JPG' : avatar}">
+        <img id="avatarIMG" class="rounded w-100 mb-1" src="${empty avatar ? '/staticResource/img/index.JPG' : avatar}">
         <div class="custom-file">
             <label class="custom-file-label" for="inputGroupIMG" style="font-size: 12px;">780*1134;48k</label>
             <input type="file" onchange="checkIMG(this)" accept="image/jpg" class="custom-file-input" id="inputGroupIMG">

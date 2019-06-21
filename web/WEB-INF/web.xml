@@ -76,4 +76,31 @@
         <url-pattern>/admin/getEmployeeInfo</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>addEmployeeServlet</servlet-name>
+        <servlet-class>EIMS.addEmployeeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addEmployeeServlet</servlet-name>
+        <url-pattern>/admin/addEmployee</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>updateEmployeeServlet</servlet-name>
+        <servlet-class>EIMS.updateEmployeeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateEmployeeServlet</servlet-name>
+        <url-pattern>/admin/updateEmployee</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>uploadAvatarServlet</servlet-name>
+        <servlet-class>EIMS.uploadAvatarServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>uploadAvatarServlet</servlet-name>
+        <url-pattern>/admin/uploadAvatar</url-pattern>
+    </servlet-mapping>
+
 </web-app>

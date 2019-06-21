@@ -16,6 +16,7 @@
             </div>
         </nav>
         <form id="filter" class="border border-dark p-4" method="post" action="/admin/updateEmployee">
+            <input class="d-none" type="hidden" name="id" value="${curEmployee.id}">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <div class="input-group mb-3">
@@ -109,9 +110,9 @@
     </div>
     <div class="col-1"></div>
     <div class="col-3">
-        <img id="bookIMG" class="rounded w-100 mb-1" src="/staticResource/img/index.JPG">
+        <img id="avatarIMG" class="rounded w-100 mb-1" src="${avatar == '' ? '/staticResource/img/index.JPG' : avatar}">
         <div class="custom-file">
-            <label class="custom-file-label" for="inputGroupIMG" style="font-size: 12px;">350*500;128k</label>
+            <label class="custom-file-label" for="inputGroupIMG" style="font-size: 12px;">780*1134;48k</label>
             <input type="file" onchange="checkIMG(this)" accept="image/jpg" class="custom-file-input" id="inputGroupIMG">
         </div>
         <hr>
@@ -131,16 +132,39 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    请确保日期满足以下条件!
-                    <ul>
-                        <li>日期合法</li>
-                        <li>日期格式为xxxx-xx-xx</li>
-                        <li>日期在2000-01-01至2020-12-31之间</li>
-                    </ul>
+                    <div v-bind:class="hiredate_modal_class">
+                        请确保日期满足以下条件!
+                        <ul>
+                            <li>日期合法</li>
+                            <li>日期格式为xxxx-xx-xx</li>
+                            <li>日期在2000-01-01至2020-12-31之间</li>
+                        </ul>
+                    </div>
+                    <div v-bind:class="integrity_modal_class">
+                        请将信息填写完整!
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="imgModal" tabindex="-1" role="dialog" aria-labelledby="imgModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imgModalLabel">更新图片</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="imgModalBody" class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -154,11 +178,27 @@
             job: "${curEmployee.job}",
             sal: "${curEmployee.sal < 0 ? "" : curEmployee.sal}",
             comm: "${curEmployee.comm < 0 ? "" : curEmployee.comm}",
-            hiredateStr: "${curEmployee.hiredateStr}",
+            hiredateStr: "${curEmployee.hiredate}",
             mgr: "${curEmployee.mgr}",
-            dept: "${curEmployee.deptno}"
+            dept: "${curEmployee.deptno}",
+            hiredate_modal_class: "",
+            integrity_modal_class: ""
         },
         methods: {
+            checkIntegrity: function() {
+                if (this.name != "" &&
+                    this.job != "" &&
+                    this.hiredateStr != "" &&
+                    this.sal != "" &&
+                    this.comm != ""
+                ) {
+                    return true;
+                } else {
+                    this.hiredate_modal_class = "d-none";
+                    this.integrity_modal_class = "";
+                    return false;
+                }
+            },
             checkHiredate: function() {
                 if (this.hiredateStr.length == 0) {
                     return true;
@@ -169,13 +209,15 @@
                     new Date(this.hiredateStr) <= new Date("2020-12-31")) {
                     return true;
                 } else {
+                    this.hiredate_modal_class = "";
+                    this.integrity_modal_class = "d-none";
                     return false;
                 }
             }
         }
     });
     $('form#filter').submit(function() {
-        if (employeeInfoApp.checkHiredate()) {
+        if (employeeInfoApp.checkIntegrity() && employeeInfoApp.checkHiredate()) {
             return true;
         } else {
             $('div#tipModal').modal('show');
@@ -187,4 +229,4 @@
     }
 </script>
 
-<script src="/staticResource/func/uploadIMG.js"></script>
+<script src="/staticResource/func/uploadIMG.js?v=0.48"></script>

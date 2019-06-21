@@ -1,21 +1,23 @@
-var rawIMGsrc = $('img#bookIMG')[0].src;
+var rawIMGsrc = $('img#avatarIMG')[0].src;
 var imgFile = null;
 var image = new Image();
+var new_src = "";
 
 var checkIMG = function(o) {
     if (o.files[0] != null) {
-        if (o.files[0].size <= 128000) {
+        if (o.files[0].size <= 48000) {
             imgFile = o.files[0];
             if(window.FileReader) {
                 var fr = new FileReader();
                 fr.onloadend = function(e) {
                     image.onload = function() {
-                        if (image.height <= 500 && image.width <= 350) {
-                            $('img#bookIMG')[0].src = e.target.result;
+                        if (image.height <= 1134 && image.width <= 780) {
+                            $('img#avatarIMG')[0].src = e.target.result;
+                            new_src = e.target.result;
                         } else {
-                            $('img#bookIMG')[0].src = rawIMGsrc;
+                            $('img#avatarIMG')[0].src = rawIMGsrc;
                             imgFile = null;
-                            $('div#imgModalBody')[0].innerText = "请选择尺寸为小于350*500的图片!";
+                            $('div#imgModalBody')[0].innerText = "请选择尺寸为小于780*1134的图片!";
                             $('div#imgModal').modal('show');
                         }
                     }
@@ -24,7 +26,7 @@ var checkIMG = function(o) {
                 fr.readAsDataURL(imgFile);
             }
         } else {
-            $('div#imgModalBody')[0].innerText = "图片过大,请选择小于128k的图片!";
+            $('div#imgModalBody')[0].innerText = "图片过大,请选择小于48k的图片!";
             $('div#imgModal').modal('show');
         }
     }
@@ -32,16 +34,12 @@ var checkIMG = function(o) {
 
 var submitIMG = function() {
     if (imgFile != null) {
-        var formData = new FormData();
-        formData.append('img', imgFile);
-        axios.post('/shop/bookIMGServlet?method=update', formData, {
-            headers: {'Content-Type': 'multipart/form-data'}
+        axios.post('/admin/uploadAvatar', {
+            avatar: new_src
         }).then(function(res) {
-            console.info(res.data);
+            window.location.reload();
         }).catch(function(error) {
             console.info(error);
         })
-    } else {
-
     }
 }

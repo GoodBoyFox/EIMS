@@ -5,6 +5,7 @@ import cn.itcast.jdbc.TxQueryRunner;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -45,6 +46,47 @@ public class employeeDao {
             e.printStackTrace();
         }
         return new employee();
+    }
+
+    public int addEmployee(employee e) {
+        String sql = "insert into employee(name ,job, hiredate, sal, comm, mgr, deptno) values(?, ?, ?, ?, ?, ?, ?);";
+        try {
+            qr.update(sql, e.getName(), e.getJob(), e.getHiredateStr(), e.getSal(), e.getComm(), e.getMgr(), e.getDeptno());
+            return ((Number)qr.query("select max(id) from employee;", new ScalarHandler())).intValue();
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+        return -1;
+    }
+
+    public int updateEmployee(employee e) {
+        String sql = "update employee set name=?, job=?, hiredate=?, sal=?, comm=?, mgr=?, deptno=? where id=?";
+        try {
+            qr.update(sql, e.getName(), e.getJob(), e.getHiredateStr(), e.getSal(), e.getComm(), e.getMgr(), e.getDeptno(), e.getId());
+            return e.getId();
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+        return -1;
+    }
+
+    public void updateAvatar(String avatar) {
+        String sql = "update employee set avatar=?;";
+        try {
+            qr.update(sql, avatar);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getAvatar(int id) {
+        String sql = "select avatar from employee where id=?;";
+        try {
+            return (String)qr.query(sql, new ScalarHandler(), id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     public void deleteEmployee(int id) {

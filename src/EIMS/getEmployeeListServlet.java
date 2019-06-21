@@ -21,10 +21,18 @@ import java.util.Date;
 public class getEmployeeListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int deptno = -1;
+        if (request.getParameter("deptno") != null) {
+            deptno = Integer.valueOf(request.getParameter("deptno"));
+            request.setAttribute("hiddenList", false);
+            request.setAttribute("employeeList", new employeeDao().queryEmployee(String.format("where deptno=%d", deptno)));
+        } else {
+            request.setAttribute("hiddenList", true);
+            request.setAttribute("employeeList", new ArrayList<employeeDao>());
+        }
+
         new getOptions().getOptionsForform(request);
-        request.setAttribute("hiddenList", true);
-        request.setAttribute("employeeList", new ArrayList<employeeDao>());
-        request.setAttribute("curQuery", new employee("", "", "", -1, -1, -1, -1));
+        request.setAttribute("curQuery", new employee("", "", "", -1, -1, -1, deptno));
         request.getRequestDispatcher("/WEB-INF/components/employeeList.jsp").include(request, response);
     }
 

@@ -14,6 +14,7 @@ public class getEmployeeInfoServlet extends HttpServlet {
             throws ServletException, IOException {
         request.setAttribute("curEmployee", new employeeDao().getEmployee(Integer.valueOf(request.getParameter("id"))));
         new getOptions().getOptionsForform(request);
+        request.setAttribute("avatar", new employeeDao().getAvatar(Integer.valueOf(request.getParameter("id"))));
         request.getRequestDispatcher("/WEB-INF/components/employeeInfo.jsp").include(request, response);
     }
 }

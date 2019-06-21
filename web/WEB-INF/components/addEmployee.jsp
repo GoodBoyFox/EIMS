@@ -17,7 +17,7 @@
             <a class="navbar-brand">添加雇员</a>
         </div>
     </nav>
-    <form id="filter" class="border border-dark p-4" method="post" action="/admin/index.jsp?aside=employeeList">
+    <form id="filter" class="border border-dark p-4" method="post" action="/admin/addEmployee">
         <div class="form-row">
             <div class="form-group col-md-12">
                 <div class="input-group mb-3">
@@ -121,12 +121,17 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    请确保日期满足以下条件!
-                    <ul>
-                        <li>日期合法</li>
-                        <li>日期格式为xxxx-xx-xx</li>
-                        <li>日期在2000-01-01至2020-12-31之间</li>
-                    </ul>
+                    <div v-bind:class="hiredate_modal_class">
+                        请确保日期满足以下条件!
+                        <ul>
+                            <li>日期合法</li>
+                            <li>日期格式为xxxx-xx-xx</li>
+                            <li>日期在2000-01-01至2020-12-31之间</li>
+                        </ul>
+                    </div>
+                    <div v-bind:class="integrity_modal_class">
+                        请将信息填写完整!
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
@@ -135,3 +140,59 @@
         </div>
     </div>
 </div>
+
+<script>
+    var addEmployeeApp = new Vue({
+        el: "div#filterForm",
+        data: {
+            name: "",
+            job: "",
+            hiredateStr: "",
+            sal: "",
+            comm: "",
+            mgr: "0",
+            dept: "0",
+            hiredate_modal_class: "",
+            integrity_modal_class: ""
+        },
+        methods: {
+            checkIntegrity: function() {
+                if (this.name != "" &&
+                    this.job != "" &&
+                    this.hiredateStr != "" &&
+                    this.sal != "" &&
+                    this.comm != ""
+                ) {
+                    return true;
+                } else {
+                    this.hiredate_modal_class = "d-none";
+                    this.integrity_modal_class = "";
+                    return false;
+                }
+            },
+            checkHiredate: function() {
+                if (this.hiredateStr.length == 0) {
+                    return true;
+                } else if (this.hiredateStr.length == 10 &&
+                    this.hiredateStr.split('-').length == 3 &&
+                    new Date(this.hiredateStr).toString() != "Invalid Date" &&
+                    new Date(this.hiredateStr) >= new Date("2000-01-01") &&
+                    new Date(this.hiredateStr) <= new Date("2020-12-31")) {
+                    return true;
+                } else {
+                    this.hiredate_modal_class = "";
+                    this.integrity_modal_class = "d-none";
+                    return false;
+                }
+            }
+        }
+    });
+    $('form#filter').submit(function() {
+        if (addEmployeeApp.checkIntegrity() && addEmployeeApp.checkHiredate()) {
+            return true;
+        } else {
+            $('div#tipModal').modal('show');
+            return false;
+        }
+    });
+</script>

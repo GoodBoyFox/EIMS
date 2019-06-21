@@ -77,7 +77,6 @@
                         comm between 0 and 100000000. step 0.1.
                     </small>
                 </div>
-
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">

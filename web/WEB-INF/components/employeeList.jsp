@@ -54,7 +54,7 @@
                     <td>${item.sal}</td>
                     <td>${item.comm}</td>
                     <td>${item.mgrName}</td>
-                    <td><a class="btn btn-sm btn-outline-warning" role="button" aria-disabled="true">${item.deptName}</a></td>
+                    <td><a href="/admin/index.jsp?aside=departmentInfo&id=${item.deptno}" class="btn btn-sm btn-outline-warning" role="button" aria-disabled="true">${item.deptName}</a></td>
                     <td><a href="/admin/index.jsp?aside=employeeInfo&id=${item.id}" class="btn btn-sm btn-outline-primary" role="button" aria-disabled="true">编辑</a></td>
                     <td><button class="btn btn-sm btn-outline-danger" onclick="employeeListModalApp.show('${item.id}');">×</button></td>
                 </tr>

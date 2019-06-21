@@ -5,14 +5,24 @@ public class department {
     private int id;
     private String name;
     private String address;
+    private int totalPeople;
+    private int maxWage;
+    private int minWage;
+    private int totalSalary;
+    private double avgSalary;
 
     @Override
     public String toString() {
         return "department{" +
                 "rownum=" + rownum +
-                ", id='" + id + '\'' +
+                ", id=" + id +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
+                ", totalPeople=" + totalPeople +
+                ", maxWage=" + maxWage +
+                ", minWage=" + minWage +
+                ", totalSalary=" + totalSalary +
+                ", avgSalary=" + avgSalary +
                 '}';
     }
 
@@ -46,5 +56,45 @@ public class department {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public int getTotalPeople() {
+        return totalPeople;
+    }
+
+    public void setTotalPeople(int totalPeople) {
+        this.totalPeople = totalPeople;
+    }
+
+    public int getMaxWage() {
+        return maxWage;
+    }
+
+    public void setMaxWage(int maxWage) {
+        this.maxWage = maxWage;
+    }
+
+    public int getMinWage() {
+        return minWage;
+    }
+
+    public void setMinWage(int minWage) {
+        this.minWage = minWage;
+    }
+
+    public int getTotalSalary() {
+        return totalSalary;
+    }
+
+    public void setTotalSalary(int totalSalary) {
+        this.totalSalary = totalSalary;
+    }
+
+    public double getAvgSalary() {
+        return avgSalary;
+    }
+
+    public void setAvgSalary(double avgSalary) {
+        this.avgSalary = avgSalary;
     }
 }

@@ -33,7 +33,7 @@
                 <th scope="row">${item.rownum}</th>
                 <td>${item.name}</td>
                 <td>${item.address}</td>
-                <td><a class="btn btn-sm btn-outline-info" role="button" aria-disabled="true">查看${item.name}详情</a></td>
+                <td><a href="/admin/index.jsp?aside=departmentInfo&id=${item.id}" class="btn btn-sm btn-outline-info" role="button" aria-disabled="true">查看${item.name}详情</a></td>
                 <td><a href="/admin/index.jsp?aside=employeeList&deptno=${item.id}" class="btn btn-sm btn-outline-warning" role="button" aria-disabled="true">${item.name}雇员清单</a></td>
             </tr>
         </c:forEach>

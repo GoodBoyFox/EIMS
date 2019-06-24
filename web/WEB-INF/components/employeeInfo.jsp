@@ -23,7 +23,7 @@
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="inputName">Name</label>
                         </div>
-                        <input v-model:value="name" name="name" maxlength="10" type="text" class="form-control" id="inputName" placeholder="Jack">
+                        <input disabled v-model:value="name" name="name" maxlength="10" type="text" class="form-control" id="inputName" placeholder="Jack">
                     </div>
                     <small class="form-text text-muted">
                         name's maxlength is 10.

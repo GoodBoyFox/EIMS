@@ -100,7 +100,7 @@
         },
         methods: {
             submit: function() {
-                if (this.name != "" && this.password != "" && this.vcode != "") {
+                if (this.name != "" && this.password != "") {
                     var that = this;
                     axios.post('/checkLogin', {
                         name: that.name,
@@ -120,7 +120,7 @@
                         console.info(error);
                     });
                 } else {
-                    this.loginAlert = "请将信息填写完整！";
+                    this.loginAlert = "用户名或密码不能为空！";
                     $('div#loginalert').modal('show');
                 }
             }

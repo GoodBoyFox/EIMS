@@ -20,16 +20,16 @@
 <div id="main" class="${hiddenList ? "d-none" : ""}">
     <nav class="navbar navbar-expand-lg navbar-light bg-light border border-dark border-bottom-0">
         <div class="container">
-            <a class="navbar-brand">雇员列表 查询到${employeeList.size()}条记录</a>
+            <a class="navbar-brand">${employeeList.size() == 0 ? "查无此人" : ""}<c:if test="${employeeList.size() > 0}">雇员列表 查询到${employeeList.size()}条记录</c:if></a>
             <span>
-                <button type="button" class="btn btn-outline-info" onclick="$('table#employeeList').tableExport({fileName: '雇员列表', ignoreColumn:[8, 9], type:'csv'});">导出表格</button>
-                <button type="button" class="btn btn-outline-danger" onclick="employeeListModalApp.show('deleteAll');">删除该查询下的所有记录</button>
+                <button type="button" class="btn btn-outline-info ${employeeList.size() == 0 ? "d-none" : ""}" onclick="$('table#employeeList').tableExport({fileName: '雇员列表', ignoreColumn:[8, 9], type:'csv'});">导出表格</button>
+                <button type="button" class="btn btn-outline-danger ${employeeList.size() == 0 ? "d-none" : ""}" onclick="employeeListModalApp.show('deleteAll');">删除该查询下的所有记录</button>
             </span>
         </div>
     </nav>
 
     <div class="table-responsive border border-dark">
-        <table id="employeeList" class="table table-sm table-striped table-dark text-nowrap">
+        <table id="employeeList" class="table table-sm table-striped table-dark text-nowrap ${employeeList.size() == 0 ? "d-none" : ""}">
             <thead>
             <tr>
                 <th scope="col" style="width: 48px;">#</th>

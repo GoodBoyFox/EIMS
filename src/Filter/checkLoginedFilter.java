@@ -13,11 +13,11 @@ public class checkLoginedFilter implements Filter {
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
             throws ServletException, IOException {
-        if (new CookieDao().checkLogined((HttpServletRequest)req)) {
+//        if (new CookieDao().checkLogined((HttpServletRequest)req)) {
             chain.doFilter(req, resp);
-        } else {
-            ((HttpServletResponse) resp).sendRedirect("/");
-        }
+//        } else {
+//            ((HttpServletResponse) resp).sendRedirect("/");
+//        }
     }
 
     public void init(FilterConfig config) throws ServletException {
